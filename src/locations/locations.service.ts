@@ -1,26 +1,31 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
 import { CreateLocationDto } from './dto/create-location.dto';
 import { UpdateLocationDto } from './dto/update-location.dto';
 
 @Injectable()
 export class LocationsService {
+  constructor(private prisma: PrismaService) {}
   create(createLocationDto: CreateLocationDto) {
-    return 'This action adds a new location';
+    return this.prisma.location.create({ data: createLocationDto });
   }
 
   findAll() {
-    return `This action returns all locations`;
+    return this.prisma.location.findMany({});
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} location`;
+    return this.prisma.location.findUnique({ where: { id } });
   }
 
   update(id: number, updateLocationDto: UpdateLocationDto) {
-    return `This action updates a #${id} location`;
+    return this.prisma.location.update({
+      where: { id },
+      data: updateLocationDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} location`;
+    return this.prisma.location.delete({ where: { id } });
   }
 }

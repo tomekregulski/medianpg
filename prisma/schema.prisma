@@ -22,14 +22,14 @@ model Article {
 
 model Location {
   id          Int      @id @default(autoincrement())
-  name       String   @unique
+  name        String   @unique
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
 model Event {
   id          Int      @id @default(autoincrement())
-  name        String   @unique
+  name        String   
   date        String
   notes       String
   createdAt   DateTime @default(now())

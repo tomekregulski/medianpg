@@ -29,7 +29,25 @@ async function main() {
     },
   });
 
-  console.log({ post1, post2 });
+  const location1 = await prisma.location.upsert({
+    where: { name: 'unknown' },
+    update: {},
+    create: {
+      name: 'unknown',
+    },
+  });
+
+  const event1 = await prisma.event.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      name: 'n/a',
+      date: '4/4/78',
+      notes: 'n/a',
+    },
+  });
+
+  console.log({ post1, post2, event1, location1 });
 }
 
 // execute the main function

@@ -5,6 +5,13 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({});
+  // app.enableCors({
+  //   origin: ['http://localhost:5173'],
+  //   methods: ['GET', 'POST'],
+  //   credentials: true,
+  // });
+
   const config = new DocumentBuilder()
     .setTitle('Median')
     .setDescription('The Median API description')
